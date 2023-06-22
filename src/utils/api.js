@@ -6,9 +6,13 @@ const requestForecast = async (location) => {
   try {
     const response = await fetch(API_URL);
     const data = await response.json();
-    return data;
+    if (response.ok) return data;
+    else {
+      console.clear();
+      return response.status;
+    }
   } catch {
-    return console.error("Error fetching data");
+    return null;
   }
 };
 
